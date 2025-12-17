@@ -1,36 +1,21 @@
-/* ==========================================================================
-   ArbiTrade Pro - Modern Dark Theme
-   ========================================================================== */
-
-/* Import Inter Font for that "Tech/Crypto" look */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Palette */
-  --bg-0: #0b0c10;       /* Deepest black/blue */
-  --bg-1: #14161f;       /* Header/Footer/Cards */
-  --bg-2: #1c1f2b;       /* Secondary sections */
-  --bg-glass: rgba(20, 22, 31, 0.85); /* For glassmorphism */
-
+  --bg-0: #0b0c10;
+  --bg-1: #14161f;
+  --bg-2: #1c1f2b;
+  --bg-glass: rgba(20, 22, 31, 0.85);
   --text: #e6e9ef;
   --text-muted: #94a3b8;
-
-  --accent-primary: #00f0ff;  /* Neon Cyan */
-  --accent-secondary: #7000ff; /* Neon Purple */
-  --accent-success: #00ff9d;   /* Crypto Green */
-
+  --accent-primary: #00f0ff;
+  --accent-secondary: #7000ff;
+  --accent-success: #00ff9d;
   --border: #2d3748;
-  --border-hover: #4a5568;
-
   --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
   --shadow-glow: 0 0 20px rgba(0, 240, 255, 0.15);
-
   --nav-height: 70px;
 }
 
-/* ==========================================================================
-   Base
-   ========================================================================== */
 html {
   scroll-behavior: smooth;
 }
@@ -41,16 +26,15 @@ body {
   color: var(--text);
   font-family: 'Inter', sans-serif;
   line-height: 1.6;
-  overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
 }
 
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
-/* Utility: Responsive Container */
 .container {
-  width: min(1200px, 100% - 2rem); /* 1rem margin on sides automatically */
+  width: min(1200px, 100% - 2rem);
   margin-inline: auto;
 }
 
@@ -60,7 +44,6 @@ img, video {
   display: block;
 }
 
-/* Typography */
 h1, h2, h3 {
   line-height: 1.2;
   margin-top: 0;
@@ -73,15 +56,12 @@ a {
   transition: 0.3s ease;
 }
 
-/* ==========================================================================
-   Header & Navigation (Fixed & Glassmorphic)
-   ========================================================================== */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 1000;
   background: var(--bg-glass);
-  backdrop-filter: blur(12px); /* Blur effect behind header */
+  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   height: var(--nav-height);
@@ -94,7 +74,6 @@ a {
   height: 100%;
 }
 
-/* Logo */
 .logo {
   font-size: 1.5rem;
   font-weight: 800;
@@ -106,7 +85,6 @@ a {
   text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
 }
 
-/* Desktop Nav */
 .main-nav .nav-list {
   list-style: none;
   margin: 0;
@@ -126,7 +104,6 @@ a {
   color: var(--accent-primary);
 }
 
-/* Dropdown (Desktop) */
 .nav-list > li { position: relative; }
 
 .has-dropdown > a::after {
@@ -163,29 +140,24 @@ a {
   transform: translateY(0);
 }
 
-/* Sub-submenu positioning */
 .submenu .submenu {
   left: 100%;
   top: 0;
 }
 
-/* ==========================================================================
-   Burger Menu (Mobile Logic)
-   ========================================================================== */
 .nav-toggle {
   position: absolute;
   opacity: 0;
   pointer-events: none;
 }
 
-/* Hamburger Icon Design */
 .hamburger {
-  display: none; /* Hidden on desktop */
+  display: none;
   cursor: pointer;
   width: 30px;
   height: 24px;
   position: relative;
-  z-index: 1100; /* Above the mobile menu panel */
+  z-index: 1100;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -199,7 +171,6 @@ a {
   transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s ease;
 }
 
-/* Hamburger Animation */
 #nav-toggle:checked ~ .hamburger span:nth-child(1) {
   transform: translateY(10.5px) rotate(45deg);
   background: var(--accent-primary);
@@ -212,29 +183,26 @@ a {
   background: var(--accent-primary);
 }
 
-/* Mobile Media Query */
 @media (max-width: 900px) {
   .hamburger { display: flex; }
 
-  /* Off-canvas Menu Panel */
   .main-nav {
     position: fixed;
     top: 0;
     right: 0;
-    width: 75%; /* Covers 75% of screen width */
+    width: 75%;
     max-width: 300px;
     height: 100vh;
     background: var(--bg-1);
     border-left: 1px solid var(--border);
-    padding: 90px 20px 40px; /* Top padding clears the header */
+    padding: 90px 20px 40px;
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-    overflow-y: auto; /* Scrollable if menu is long */
+    overflow-y: auto;
     z-index: 1000;
   }
 
-  /* When checkbox is checked, slide in menu */
   #nav-toggle:checked ~ .main-nav {
     transform: translateX(0);
   }
@@ -257,9 +225,8 @@ a {
     color: #fff;
   }
 
-  /* Fix for Dropdowns on Mobile: They should not float */
   .submenu {
-    position: static; /* Stack naturally */
+    position: static;
     opacity: 1;
     visibility: visible;
     transform: none;
@@ -267,10 +234,9 @@ a {
     box-shadow: none;
     border: none;
     padding-left: 20px;
-    display: none; /* Hidden by default to save space */
+    display: none;
   }
 
-  /* Show submenu on hover/focus (or we could use JS, but this is CSS only) */
   .has-dropdown:hover .submenu {
     display: block;
   }
@@ -282,9 +248,6 @@ a {
   }
 }
 
-/* ==========================================================================
-   Hero Section
-   ========================================================================== */
 .hero {
   position: relative;
   min-height: 80vh;
@@ -318,7 +281,6 @@ a {
   margin-bottom: 2.5rem;
 }
 
-/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -343,9 +305,6 @@ a {
   transform: translateY(-2px);
 }
 
-/* ==========================================================================
-   Features Cards (Flexbox)
-   ========================================================================== */
 .section { padding: 80px 0; }
 .section-title { margin-bottom: 40px; text-align: center; }
 
@@ -361,7 +320,7 @@ a {
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 30px;
-  flex: 1 1 300px; /* Min width 300px */
+  flex: 1 1 300px;
   transition: transform 0.3s, border-color 0.3s;
 }
 
@@ -373,9 +332,6 @@ a {
 .card h3 { color: var(--accent-primary); font-size: 1.25rem; }
 .card p { color: var(--text-muted); font-size: 0.95rem; }
 
-/* ==========================================================================
-   Pricing (Improved for Mobile)
-   ========================================================================== */
 .pricing { background: var(--bg-2); }
 
 .price-card {
@@ -417,9 +373,6 @@ a {
   left: 0;
 }
 
-/* ==========================================================================
-   Forms
-   ========================================================================== */
 .contact-form {
   max-width: 600px;
   margin: 0 auto;
@@ -444,7 +397,6 @@ input, select, textarea {
   transition: 0.3s;
 }
 
-/* Don't stretch radios/checkboxes like text inputs */
 input[type="radio"],
 input[type="checkbox"] {
   width: auto;
@@ -457,7 +409,6 @@ input[type="checkbox"] {
   accent-color: var(--accent-primary);
 }
 
-/* Radio group layout */
 .radio-group {
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -498,9 +449,6 @@ input:focus, select:focus, textarea:focus {
 }
 .btn-submit:hover { background: #00cc7d; }
 
-/* ==========================================================================
-   Footer
-   ========================================================================== */
 .site-footer {
   border-top: 1px solid var(--border);
   padding: 40px 0;
@@ -509,22 +457,14 @@ input:focus, select:focus, textarea:focus {
   font-size: 0.9rem;
 }
 
-/* ==========================================================================
-   Media Queries for Phones
-   ========================================================================== */
 @media (max-width: 768px) {
   .hero-title { font-size: 2.2rem; }
 
   .contact-form { padding: 20px; }
 
-  /* Stack cards vertically on small phones */
   .card { flex: 1 1 100%; }
 }
-/* ==========================================================================
-   New Sections: Stats, Steps, Reviews
-   ========================================================================== */
 
-/* 1. Stats Section (Dark Strip) */
 .stats-section {
   background: var(--bg-0);
   border-top: 1px solid var(--border);
@@ -532,8 +472,6 @@ input:focus, select:focus, textarea:focus {
   padding: 40px 0;
   position: relative;
 }
-
-/* Add a subtle glow behind stats */
 .stats-section::before {
   content: '';
   position: absolute;
@@ -561,7 +499,6 @@ input:focus, select:focus, textarea:focus {
   font-size: 2.5rem;
   font-weight: 800;
   color: #fff;
-  /* Neon text effect */
   text-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
   margin-bottom: 5px;
 }
@@ -574,7 +511,6 @@ input:focus, select:focus, textarea:focus {
   margin: 0;
 }
 
-/* 2. How It Works (Steps) */
 .how-it-works {
   background: var(--bg-2);
 }
@@ -622,10 +558,8 @@ input:focus, select:focus, textarea:focus {
   font-size: 1.2rem;
 }
 
-/* 3. Testimonials */
 .review-card {
   background: var(--bg-1);
-  /* Make reviews slightly different from feature cards */
   border-left: 4px solid var(--accent-secondary);
 }
 
@@ -671,10 +605,9 @@ input:focus, select:focus, textarea:focus {
   line-height: 1.6;
 }
 
-/* Mobile Tweaks for new sections */
 @media (max-width: 768px) {
   .stat-item {
-    flex: 1 1 40%; /* 2 items per row on mobile */
+    flex: 1 1 40%;
   }
 
   .stat-number {
@@ -682,16 +615,10 @@ input:focus, select:focus, textarea:focus {
   }
 
   .steps-grid {
-    grid-template-columns: 1fr; /* Stack steps vertically */
+    grid-template-columns: 1fr;
   }
 }
-/* ==========================================================================
-   PAGE: SCANNER (Tables)
-   ========================================================================== */
 
-/* ==========================================================================
-   Background Video Section
-   ========================================================================== */
 .video-section {
   position: relative;
   min-height: 60vh;
@@ -707,14 +634,14 @@ input:focus, select:focus, textarea:focus {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Fill container while preserving aspect */
+  object-fit: cover;
 }
 
 .video-section::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(11,12,16,0.55), rgba(11,12,16,0.75)); /* Dark overlay for readability */
+  background: linear-gradient(180deg, rgba(11,12,16,0.55), rgba(11,12,16,0.75));
 }
 
 .video-content {
@@ -734,7 +661,7 @@ input:focus, select:focus, textarea:focus {
   }
 }
 .table-container {
-  overflow-x: auto; /* Scroll on mobile */
+  overflow-x: auto;
   background: var(--bg-1);
   border-radius: 16px;
   border: 1px solid var(--border);
@@ -744,7 +671,7 @@ input:focus, select:focus, textarea:focus {
 .data-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px; /* Force scroll on small screens */
+  min-width: 600px;
 }
 
 .data-table th,
@@ -782,9 +709,6 @@ input:focus, select:focus, textarea:focus {
 }
 .status-active { background: rgba(0, 255, 157, 0.15); color: var(--accent-success); }
 
-/* ==========================================================================
-   PAGE: CALCULATOR
-   ========================================================================== */
 .calc-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -814,7 +738,6 @@ input:focus, select:focus, textarea:focus {
   text-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
 }
 
-/* Range Slider Styling */
 input[type=range] {
   -webkit-appearance: none;
   width: 100%;

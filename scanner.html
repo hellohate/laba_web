@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Сканер спредів | ArbiTrade Pro</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">ArbiTrade <span class="accent">Pro</span></a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="hamburger">
+        <span></span><span></span><span></span>
+      </label>
+      <nav class="main-nav">
+        <ul class="nav-list">
+          <li class="has-dropdown">
+            <a href="#" class="active">Інструменти</a> <ul class="submenu">
+              <li><a href="scanner.html">Сканер спредів</a></li>
+              <li><a href="calculator.html">Калькулятор</a></li>
+            </ul>
+          </li>
+          <li><a href="index.html#features">Переваги</a></li>
+          <li><a href="index.html#pricing">Тарифи</a></li>
+          <li><a href="news.html">Новини</a></li>
+          <li><a href="index.html#contact">Контакти</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div style="margin-bottom: 30px;">
+          <h1 class="hero-title" style="font-size: 2.5rem;">Сканер ринку</h1>
+          <p class="hero-subtitle">Живий моніторинг спредів між Binance та MEXC.</p>
+        </div>
+
+        <div class="card" style="margin-bottom: 20px; padding: 15px; display: flex; gap: 15px; flex-wrap: wrap;">
+          <select style="max-width: 200px;"><option>Всі пари (USDT)</option><option>BTC Pairs</option></select>
+          <select style="max-width: 200px;"><option>Спред > 0.5%</option><option>Спред > 1.0%</option></select>
+          <button class="btn btn-primary" style="padding: 10px 20px;">Оновити</button>
+        </div>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Пара</th>
+                <th>Binance (Buy)</th>
+                <th>MEXC (Sell)</th>
+                <th>Спред</th>
+                <th>Об'єм (24h)</th>
+                <th>Статус</th>
+                <th>Дія</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="coin-cell">
+                    <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" class="coin-icon" alt="BTC"> BTC/USDT
+                  </div>
+                </td>
+                <td>$98,450.00</td>
+                <td>$98,620.50</td>
+                <td class="profit-med">+0.17%</td>
+                <td>$450M</td>
+                <td><span class="status-badge status-active">Active</span></td>
+                <td><a href="#" class="btn btn-primary" style="padding: 6px 12px; font-size: 0.8rem;">Trade</a></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="coin-cell">
+                    <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" class="coin-icon" alt="ETH"> ETH/USDT
+                  </div>
+                </td>
+                <td>$2,850.10</td>
+                <td>$2,895.00</td>
+                <td class="profit-high">+1.57%</td>
+                <td>$120M</td>
+                <td><span class="status-badge status-active">Hot</span></td>
+                <td><a href="#" class="btn btn-primary" style="padding: 6px 12px; font-size: 0.8rem;">Trade</a></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="coin-cell">
+                    <img src="https://cryptologos.cc/logos/solana-sol-logo.png" class="coin-icon" alt="SOL"> SOL/USDT
+                  </div>
+                </td>
+                <td>$145.20</td>
+                <td>$144.90</td>
+                <td class="profit-med" style="color: #ff4757;">-0.20%</td>
+                <td>$85M</td>
+                <td><span class="status-badge" style="background: rgba(255, 71, 87, 0.15); color: #ff4757;">No Arb</span></td>
+                <td><button class="btn" style="padding: 6px 12px; font-size: 0.8rem; opacity: 0.5;" disabled>Wait</button></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="coin-cell">
+                    <img src="https://cryptologos.cc/logos/xrp-xrp-logo.png" class="coin-icon" alt="XRP"> XRP/USDT
+                  </div>
+                </td>
+                <td>$1.1200</td>
+                <td>$1.1500</td>
+                <td class="profit-high">+2.60%</td>
+                <td>$40M</td>
+                <td><span class="status-badge status-active">Hot</span></td>
+                <td><a href="#" class="btn btn-primary" style="padding: 6px 12px; font-size: 0.8rem;">Trade</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><p>© 2025 ArbiTrade Pro.</p></div>
+  </footer>
+</body>
+</html>

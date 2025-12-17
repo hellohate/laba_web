@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Калькулятор прибутку | ArbiTrade Pro</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">ArbiTrade <span class="accent">Pro</span></a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="hamburger">
+        <span></span><span></span><span></span>
+      </label>
+      <nav class="main-nav">
+        <ul class="nav-list">
+          <li class="has-dropdown">
+            <a href="#" class="active">Інструменти</a>
+            <ul class="submenu">
+              <li><a href="scanner.html">Сканер спредів</a></li>
+              <li><a href="calculator.html">Калькулятор</a></li>
+            </ul>
+          </li>
+          <li><a href="index.html#features">Переваги</a></li>
+          <li><a href="index.html#pricing">Тарифи</a></li>
+          <li><a href="news.html">Новини</a></li>
+          <li><a href="index.html#contact">Контакти</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 40px;">
+          <h1 class="hero-title" style="font-size: 2.5rem;">ROI Калькулятор</h1>
+          <p class="hero-subtitle">Розрахуйте потенційний прибуток від арбітражної угоди з урахуванням плеча та комісій.</p>
+        </div>
+
+        <div class="calc-grid">
+
+          <div class="calc-panel">
+            <h3 style="margin-bottom: 20px;">Параметри угоди</h3>
+            <form>
+              <div class="form-group">
+                <label>Ваш депозит (USDT)</label>
+                <input type="number" value="1000" min="100">
+              </div>
+
+              <div class="form-group">
+                <label>Кредитне плече (Leverage): <span style="color:var(--accent-primary)">x10</span></label>
+                <input type="range" min="1" max="50" value="10" oninput="this.previousElementSibling.firstElementChild.innerText = 'x' + this.value">
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-muted); margin-top:5px;">
+                  <span>x1</span>
+                  <span>x25</span>
+                  <span>x50</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Очікуваний спред (%)</label>
+                <input type="number" value="1.5" step="0.1">
+              </div>
+
+              <div class="form-group">
+                <label>Комісія біржі (Taker fee %)</label>
+                <input type="number" value="0.04" step="0.01" readonly style="opacity: 0.7;">
+              </div>
+            </form>
+          </div>
+
+          <div class="calc-panel result-card">
+            <h3>Прогнозований результат</h3>
+            <p style="color:var(--text-muted);">Чистий прибуток (PnL)</p>
+
+            <div class="result-value">+$146.00</div>
+
+            <div style="margin: 20px 0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <span>Об'єм позиції:</span>
+                <span style="font-weight:700;">$10,000</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <span>ROI на депозит:</span>
+                <span style="font-weight:700; color:var(--accent-success);">+14.6%</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span>Всього комісій:</span>
+                <span style="font-weight:700; color:#ff4757;">-$4.00</span>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" style="width: 100%;">Перерахувати</button>
+            <p style="font-size: 0.8rem; color:var(--text-muted); margin-top: 15px;">*Розрахунок є приблизним і не враховує прослизання.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><p>© 2025 ArbiTrade Pro.</p></div>
+  </footer>
+</body>
+</html>

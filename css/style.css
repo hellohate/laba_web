@@ -1,0 +1,842 @@
+/* ==========================================================================
+   ArbiTrade Pro - Modern Dark Theme
+   ========================================================================== */
+
+/* Import Inter Font for that "Tech/Crypto" look */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Palette */
+  --bg-0: #0b0c10;       /* Deepest black/blue */
+  --bg-1: #14161f;       /* Header/Footer/Cards */
+  --bg-2: #1c1f2b;       /* Secondary sections */
+  --bg-glass: rgba(20, 22, 31, 0.85); /* For glassmorphism */
+
+  --text: #e6e9ef;
+  --text-muted: #94a3b8;
+
+  --accent-primary: #00f0ff;  /* Neon Cyan */
+  --accent-secondary: #7000ff; /* Neon Purple */
+  --accent-success: #00ff9d;   /* Crypto Green */
+
+  --border: #2d3748;
+  --border-hover: #4a5568;
+
+  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px rgba(0, 240, 255, 0.15);
+
+  --nav-height: 70px;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-0);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Utility: Responsive Container */
+.container {
+  width: min(1200px, 100% - 2rem); /* 1rem margin on sides automatically */
+  margin-inline: auto;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Typography */
+h1, h2, h3 {
+  line-height: 1.2;
+  margin-top: 0;
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s ease;
+}
+
+/* ==========================================================================
+   Header & Navigation (Fixed & Glassmorphic)
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px); /* Blur effect behind header */
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  height: var(--nav-height);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* Logo */
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+}
+.logo .accent {
+  color: var(--accent-primary);
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
+
+/* Desktop Nav */
+.main-nav .nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.main-nav a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.main-nav a:hover {
+  color: var(--accent-primary);
+}
+
+/* Dropdown (Desktop) */
+.nav-list > li { position: relative; }
+
+.has-dropdown > a::after {
+  content: "▾";
+  margin-left: 5px;
+  font-size: 0.8em;
+  color: var(--accent-secondary);
+}
+
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  min-width: 200px;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-card);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.submenu li { list-style: none; }
+.submenu a { display: block; padding: 8px 12px; border-radius: 4px; }
+.submenu a:hover { background: var(--bg-2); color: #fff; }
+
+.has-dropdown:hover .submenu,
+.has-dropdown:focus-within .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Sub-submenu positioning */
+.submenu .submenu {
+  left: 100%;
+  top: 0;
+}
+
+/* ==========================================================================
+   Burger Menu (Mobile Logic)
+   ========================================================================== */
+.nav-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Hamburger Icon Design */
+.hamburger {
+  display: none; /* Hidden on desktop */
+  cursor: pointer;
+  width: 30px;
+  height: 24px;
+  position: relative;
+  z-index: 1100; /* Above the mobile menu panel */
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: var(--text);
+  border-radius: 3px;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s ease;
+}
+
+/* Hamburger Animation */
+#nav-toggle:checked ~ .hamburger span:nth-child(1) {
+  transform: translateY(10.5px) rotate(45deg);
+  background: var(--accent-primary);
+}
+#nav-toggle:checked ~ .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+#nav-toggle:checked ~ .hamburger span:nth-child(3) {
+  transform: translateY(-10.5px) rotate(-45deg);
+  background: var(--accent-primary);
+}
+
+/* Mobile Media Query */
+@media (max-width: 900px) {
+  .hamburger { display: flex; }
+
+  /* Off-canvas Menu Panel */
+  .main-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 75%; /* Covers 75% of screen width */
+    max-width: 300px;
+    height: 100vh;
+    background: var(--bg-1);
+    border-left: 1px solid var(--border);
+    padding: 90px 20px 40px; /* Top padding clears the header */
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    overflow-y: auto; /* Scrollable if menu is long */
+    z-index: 1000;
+  }
+
+  /* When checkbox is checked, slide in menu */
+  #nav-toggle:checked ~ .main-nav {
+    transform: translateX(0);
+  }
+
+  .main-nav .nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .main-nav .nav-list > li {
+    width: 100%;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .main-nav a {
+    display: block;
+    padding: 16px 0;
+    font-size: 1.1rem;
+    color: #fff;
+  }
+
+  /* Fix for Dropdowns on Mobile: They should not float */
+  .submenu {
+    position: static; /* Stack naturally */
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    background: var(--bg-2);
+    box-shadow: none;
+    border: none;
+    padding-left: 20px;
+    display: none; /* Hidden by default to save space */
+  }
+
+  /* Show submenu on hover/focus (or we could use JS, but this is CSS only) */
+  .has-dropdown:hover .submenu {
+    display: block;
+  }
+
+  .submenu .submenu {
+    position: static;
+    padding-left: 15px;
+    border-left: 2px solid var(--border);
+  }
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.hero {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  background:
+    radial-gradient(circle at top right, rgba(0, 240, 255, 0.1), transparent 40%),
+    linear-gradient(to top, var(--bg-0), rgba(11, 12, 16, 0.7)),
+    url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2832&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-content {
+  max-width: 650px;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, #fff, var(--accent-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--accent-primary);
+  color: #000;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+}
+.btn-primary:hover {
+  background: #fff;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Features Cards (Flexbox)
+   ========================================================================== */
+.section { padding: 80px 0; }
+.section-title { margin-bottom: 40px; text-align: center; }
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.card {
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 30px;
+  flex: 1 1 300px; /* Min width 300px */
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-primary);
+}
+
+.card h3 { color: var(--accent-primary); font-size: 1.25rem; }
+.card p { color: var(--text-muted); font-size: 0.95rem; }
+
+/* ==========================================================================
+   Pricing (Improved for Mobile)
+   ========================================================================== */
+.pricing { background: var(--bg-2); }
+
+.price-card {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.price-card--recommended {
+  border: 1px solid var(--accent-secondary);
+  background: linear-gradient(180deg, rgba(112, 0, 255, 0.1), var(--bg-1));
+}
+
+.price-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 10px 0;
+}
+
+.price-features {
+  text-align: left;
+  margin: 20px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.price-features li {
+  margin-bottom: 10px;
+  padding-left: 24px;
+  position: relative;
+  color: var(--text-muted);
+}
+
+.price-features li::before {
+  content: "✓";
+  color: var(--accent-success);
+  position: absolute;
+  left: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--bg-1);
+  padding: 40px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.form-group { margin-bottom: 20px; }
+
+label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem; }
+
+input, select, textarea {
+  width: 100%;
+  background: var(--bg-0);
+  border: 1px solid var(--border);
+  color: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: inherit;
+  transition: 0.3s;
+}
+
+/* Don't stretch radios/checkboxes like text inputs */
+input[type="radio"],
+input[type="checkbox"] {
+  width: auto;
+  height: auto;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  accent-color: var(--accent-primary);
+}
+
+/* Radio group layout */
+.radio-group {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+.radio-group legend {
+  color: var(--text-muted);
+  padding: 0 6px;
+  font-size: 0.9rem;
+}
+.radio-options {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.radio-options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1);
+}
+
+.btn-submit {
+  width: 100%;
+  background: var(--accent-success);
+  color: #000;
+  border: none;
+  padding: 14px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn-submit:hover { background: #00cc7d; }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   Media Queries for Phones
+   ========================================================================== */
+@media (max-width: 768px) {
+  .hero-title { font-size: 2.2rem; }
+
+  .contact-form { padding: 20px; }
+
+  /* Stack cards vertically on small phones */
+  .card { flex: 1 1 100%; }
+}
+/* ==========================================================================
+   New Sections: Stats, Steps, Reviews
+   ========================================================================== */
+
+/* 1. Stats Section (Dark Strip) */
+.stats-section {
+  background: var(--bg-0);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 0;
+  position: relative;
+}
+
+/* Add a subtle glow behind stats */
+.stats-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 50%;
+  background: var(--accent-primary);
+  filter: blur(80px);
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.stats-grid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fff;
+  /* Neon text effect */
+  text-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+/* 2. How It Works (Steps) */
+.how-it-works {
+  background: var(--bg-2);
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.step-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed var(--border);
+  padding: 30px 20px;
+  border-radius: 16px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.step-card:hover {
+  background: var(--bg-1);
+  border-style: solid;
+  border-color: var(--accent-primary);
+}
+
+.step-icon {
+  width: 50px;
+  height: 50px;
+  background: var(--bg-1);
+  border: 2px solid var(--accent-primary);
+  color: var(--accent-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+}
+
+.step-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+/* 3. Testimonials */
+.review-card {
+  background: var(--bg-1);
+  /* Make reviews slightly different from feature cards */
+  border-left: 4px solid var(--accent-secondary);
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, var(--accent-primary), #00a8ff);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #000;
+  font-size: 1.2rem;
+}
+
+.avatar-blue {
+  background: linear-gradient(135deg, var(--accent-secondary), #b06bff);
+  color: #fff;
+}
+
+.review-header h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.role {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.review-card p {
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Mobile Tweaks for new sections */
+@media (max-width: 768px) {
+  .stat-item {
+    flex: 1 1 40%; /* 2 items per row on mobile */
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr; /* Stack steps vertically */
+  }
+}
+/* ==========================================================================
+   PAGE: SCANNER (Tables)
+   ========================================================================== */
+
+/* ==========================================================================
+   Background Video Section
+   ========================================================================== */
+.video-section {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Fill container while preserving aspect */
+}
+
+.video-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11,12,16,0.55), rgba(11,12,16,0.75)); /* Dark overlay for readability */
+}
+
+.video-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-video { display: none; }
+  .video-section {
+    background:
+      linear-gradient(180deg, rgba(11,12,16,0.55), rgba(11,12,16,0.75)),
+      url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRni6nvq8O0rmf3vIec1I9AVF-Se1FPDBC1vw&s');
+    background-size: cover;
+    background-position: center;
+  }
+}
+.table-container {
+  overflow-x: auto; /* Scroll on mobile */
+  background: var(--bg-1);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px; /* Force scroll on small screens */
+}
+
+.data-table th,
+.data-table td {
+  padding: 16px 24px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table th {
+  background: rgba(255,255,255,0.03);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover { background: rgba(255,255,255,0.02); }
+
+.coin-cell { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+.coin-icon { width: 32px; height: 32px; border-radius: 50%; }
+
+.profit-high { color: var(--accent-success); font-weight: 700; }
+.profit-med { color: var(--accent-primary); font-weight: 700; }
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.status-active { background: rgba(0, 255, 157, 0.15); color: var(--accent-success); }
+
+/* ==========================================================================
+   PAGE: CALCULATOR
+   ========================================================================== */
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.calc-panel {
+  background: var(--bg-1);
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.result-card {
+  background: linear-gradient(135deg, var(--bg-2), var(--bg-1));
+  text-align: center;
+  border: 1px solid var(--accent-primary);
+  box-shadow: var(--shadow-glow);
+}
+
+.result-value {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--accent-primary);
+  margin: 10px 0;
+  text-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+}
+
+/* Range Slider Styling */
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  cursor: pointer;
+  margin-top: -8px;
+  box-shadow: 0 0 10px var(--accent-primary);
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+}
+
+@media (max-width: 900px) {
+  .calc-grid { grid-template-columns: 1fr; }
+}
